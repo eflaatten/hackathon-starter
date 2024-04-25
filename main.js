@@ -11,7 +11,7 @@ const rl = readline.createInterface({
 });
 
 
-// Your code here
+// Your code right here
 
 
 // TO-DO - UPDATE TO USE YOUR FUNCTION
