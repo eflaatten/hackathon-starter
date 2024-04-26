@@ -1,0 +1,36 @@
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #ccff00;
+  --success-color: #28a745;
+  --danger-color: #dc3545;
+  --warning-color: #ffc107;
+  --info-color: #17a2b8;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+header h1 {
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 50px;
+}
+
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  #user-input {
+    margin-top: 20px;
+    background-color: white;
+    border: none;
+    width: 200px;
+    height: 30px;
+    color: white;
+  }
+}
