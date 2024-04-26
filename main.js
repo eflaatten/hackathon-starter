@@ -13,14 +13,68 @@ const rl = readline.createInterface({
 
 // Your code right here
 
+//HANGMAN GAME
+
+// Array of words to choose from
+const word = ['apple', 'banana', 'orange', 'grape', 'kiwi', 'mango', 'pear', 'peach', 'plum', 'strawberry']
+
+// Randomly select a word from the array and print a board with underscores for each letter
+let randomWord = word[Math.floor(Math.random() * word.length)]
+
+// Create the board with an underscore for each letter in the word
+let board = Array(randomWord.length).fill('_')
+
+// Incorrect guesses starts at 0
+let incorrectGuesses = 0
+
+const printBoard = () => {
+  console.log(board.join(' '))
+}
+
+const hangman = (guess) => {
+  let correctGuess = false
+  for (let i = 0; i < randomWord.length; i++) {
+    if (randomWord[i] === guess) {
+      board[i] = guess
+      correctGuess = true
+    }
+  }
+
+  // Check for incorrect guess
+  if(!correctGuess){
+    // Increment incorrect guess count by 1
+    incorrectGuesses++
+    console.log("Incorrect Guesses: " + incorrectGuesses)
+    // If incorrect guesses is equal to 6, game over
+    if(incorrectGuesses === 6){
+      console.log(`Game Over! The word was ${randomWord}`)
+      process.exit()
+    }
+  }
+
+  // Check for win
+  checkForWin()
+}
+
+const checkForWin = () => {
+  // Check if the board has no more empty spaces
+  if(board.indexOf('_') === -1){
+    setTimeout(() => {
+      console.log('You Win!')
+      process.exit()
+    }, 100);
+  }
+}
 
 // TO-DO - UPDATE TO USE YOUR FUNCTION
-// const getPrompt = () => {
-//   rl.question('word ', (answer) => {
-//     console.log( pigLatin(answer) );
-//     getPrompt();
-//   });
-// }
+const getPrompt = () => {
+  printBoard()
+  rl.question('guess: ', (guess) => {
+    hangman(guess)
+    printBoard()
+    getPrompt();
+  });
+}
 
 // Unit Tests
 // to use them run the command: npm test main.js
