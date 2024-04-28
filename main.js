@@ -27,28 +27,38 @@ let board = Array(randomWord.length).fill('_')
 // Incorrect guesses starts at 0
 let incorrectGuesses = 0
 
+//Gussed letters starts as an empty array
+let guessedLetters = []
+
+// Print the board
 const printBoard = () => {
   console.log(board.join(' '))
 }
 
+// Main function with one argument, guess.
 const hangman = (guess) => {
-  let correctGuess = false
+  // Check if the guess is a letter you already guessed
+  if(guessedLetters.includes(guess)){
+    console.log('You already guessed that letter')
+    return
+  }
+  guessedLetters.push(guess)
+
+  // Check for correct guess
+  let correctGuess = false // Starts false
   for (let i = 0; i < randomWord.length; i++) {
-    if (randomWord[i] === guess) {
-      board[i] = guess
-      correctGuess = true
+    if (randomWord[i] === guess) { // If the guess is correct
+      board[i] = guess // Update the board with the correct guess
+      correctGuess = true // correctGuess is now true
     }
   }
 
-  // Check for incorrect guess
-  if(!correctGuess){
-    // Increment incorrect guess count by 1
-    incorrectGuesses++
+  if(!correctGuess){ // If the guess is incorrect
+    incorrectGuesses++ // Increment incorrect guess count by 1
     console.log("Incorrect Guesses: " + incorrectGuesses)
-    // If incorrect guesses is equal to 6, game over
-    if(incorrectGuesses === 6){
+    if(incorrectGuesses === 6){ // If incorrect guesses is equal to 6, game over
       console.log(`Game Over! The word was ${randomWord}`)
-      process.exit()
+      process.exit() // Exit the game
     }
   }
 
@@ -68,7 +78,6 @@ const checkForWin = () => {
 
 // TO-DO - UPDATE TO USE YOUR FUNCTION
 const getPrompt = () => {
-  printBoard()
   rl.question('guess: ', (guess) => {
     hangman(guess)
     printBoard()
