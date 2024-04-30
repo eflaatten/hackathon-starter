@@ -58,7 +58,6 @@ const hangman = (guess) => {
     console.log("Incorrect Guesses: " + incorrectGuesses)
     if(incorrectGuesses === 6){ // If incorrect guesses is equal to 6, game over
       console.log(`Game Over! The word was ${randomWord}`)
-      process.exit() // Exit the game
     }
   }
 
@@ -71,7 +70,6 @@ const checkForWin = () => {
   if(board.indexOf('_') === -1){
     setTimeout(() => {
       console.log('You Win!')
-      process.exit()
     }, 100);
   }
 }
@@ -92,14 +90,49 @@ const getPrompt = () => {
 // TO-DO - ADD TESTS
 if (typeof describe === 'function') {
 
-  describe("#yourFunctionName)", () => {
-    it("test description", () => {
-      assert.equal(yourFunctionName("test input"), "expected return value");
-      assert.equal(yourFunctionName("test input"), "expected return value");
-    });
-  });
+  describe("#hangman", () => {
+    beforeEach(() => { // Before each test, reset the game
+      randomWord = 'apple' // Set the random word to apple for the tests
+      board = Array(randomWord.length).fill('_')
+      incorrectGuesses = 0
+      guessedLetters = []
+    })
+
+    it('Make a guess', () => {
+      hangman('a')
+      assert.deepEqual(board, ['a', '_', '_', '_', '_'])
+    })
+
+    it('Make an incorrect guess', () => {
+      hangman('z')
+      assert.deepEqual(board, ['_', '_', '_', '_', '_'])
+      assert.deepEqual(incorrectGuesses, 1)
+    })
+
+    it('Make a correct guess', () => {
+      hangman('a')
+      assert.deepEqual(board, ['a', '_', '_', '_', '_'])
+    })
+
+    it('Win the game', () => {
+      hangman('a')
+      hangman('p')
+      hangman('l')
+      hangman('e')
+      assert.deepEqual(board, ['a', 'p', 'p', 'l', 'e'])
+      assert.deepEqual(incorrectGuesses, 0)
+    })
+
+    it('Lose the game', () => {
+      hangman('z')
+      hangman('x')
+      hangman('c')
+      hangman('v')
+      hangman('b')
+      hangman('n')
+      assert.deepEqual(incorrectGuesses, 6)
+    })
+  })
 } else {
-
   getPrompt();
-
 }
