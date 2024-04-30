@@ -1,10 +1,8 @@
 :root {
   --primary-color: #007bff;
-  --secondary-color: #ccff00;
-  --success-color: #28a745;
-  --danger-color: #dc3545;
-  --warning-color: #ffc107;
-  --info-color: #17a2b8;
+  --header: rgb(188, 0, 0);
+  --alphabet-table: white;
+  --alphabet-table-hover: #ff0400;
 }
 
 body {
@@ -12,25 +10,28 @@ body {
 }
 
 header h1 {
-  color: var(--secondary-color);
+  font-family: 'Playfair Display', serif;
+  color: var(--header);
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 50px;
 }
-
-
-form {
+.alphabet-row{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+#alphabet-table td {
+  padding: 10px;
+  font-family: "Jersey 15", sans-serif;
+  color: var(--alphabet-table);
+  font-size: 50px;
+  transition: 0.2s;
+}
 
-  #user-input {
-    margin-top: 20px;
-    background-color: white;
-    border: none;
-    width: 200px;
-    height: 30px;
-    color: white;
-  }
+#alphabet-table td:hover {
+  color: var(--alphabet-table-hover);
+  transition: 0.2s;
+  cursor: pointer;
 }
