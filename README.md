@@ -44,21 +44,9 @@ GitHub `git push`
 1. Every time you make a change *and push to GitHub*, this PR will automatically
 update. No need to do it more than once.
 
-
-### Running the apps
-
-Simply run `node path/to/file.js`
-
-example `node 01week/rockPaperScissors.js`
-
 ### Running Tests
 
-Tests are a great way to make sure your code works the way you planned it would,
-and to make sure you don't break something in the future. We will be using them
-to test our understanding of the lesson. It's also our main way to assign grades
-for an assignment.
-
-To run the tests on a file run `npm test path/to/file.js`, etc.
+Running unit tests: `npm test main.js`
 
 ### Running the Linter
 
