@@ -1,8 +1,9 @@
 :root {
-  --primary-color: #007bff;
+  --primary-color: #002f6d;
   --header: rgb(188, 0, 0);
   --alphabet-table: white;
   --alphabet-table-hover: #ff0400;
+  --game-start: green;
 }
 
 body {
@@ -10,7 +11,7 @@ body {
 }
 
 header h1 {
-  font-family: 'Playfair Display', serif;
+  font-family: "Briem Hand", cursive;
   color: var(--header);
   display: flex;
   justify-content: center;
@@ -34,4 +35,38 @@ header h1 {
   color: var(--alphabet-table-hover);
   transition: 0.2s;
   cursor: pointer;
+}
+
+#noose-element {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 47%;
+  transform: translate(-50%, -50%);
+}
+
+#game-start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: none;
+  background-color: var(--game-start);
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  transition: 0.2s;
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#game-start:hover {
+  cursor: pointer;
+  padding: 11px;
+  transition: 0.2s;
 }

@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Jersey+15&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Briem+Hand:wght@100..900&display=swap" rel="stylesheet">
     <title>Hangman</title>
     <link rel="stylesheet" href="style.css">
   </head>
@@ -15,9 +18,18 @@
     <header>
       <h1>Hangman!</h1>
     </header>
-    <div id="alphabet-table">
-    <div id="display-element"></div>
-    <div id="hangman-element"></div>
+
+    <div class="top-half">
+      <div id="alphabet-table">
+    </div>
+
+    <div class="bottom-half">
+      <div id="noose-element"></div>
+      <button id="game-start" onclick="generateWord()">Start Game</button>
+      <div id="hangman-element"></div>
+      <div id="word-spaces"></div>
+    </div>
+
     </div>
   </body>
   <script src="index.js"></script>
