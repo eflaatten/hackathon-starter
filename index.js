@@ -2,8 +2,8 @@ let hangmanState = 0
 
 // START GAME
 const startGame = () => {
-  currentWord = generateWord()
-  drawWordSpaces(currentWord)
+  currentWord = generateWord() // Get a random word
+  drawWordSpaces(currentWord) // Draw the word spaces
   console.log('Word: ', currentWord)
   return currentWord
 }
@@ -38,15 +38,15 @@ const makeAGuess = (letter) => {
 
 // CHECK FOR WIN
 const checkForWin = () => {
-  const wordSpaces = document.getElementById('word-spaces').children
-  const word = Array.from(wordSpaces).map(space => space.textContent).join('')
-  const winMessage = document.createElement('h1')
-  winMessage.className = 'win-message'
-  winMessage.textContent = 'Congratulations!'
+  const wordSpaces = document.getElementById('word-spaces').children // Get the word spaces
+  const word = Array.from(wordSpaces).map(space => space.textContent).join('') // Convert the word spaces to an array and join them into a string
+  const winMessage = document.createElement('h1') // Create a win message element
+  winMessage.className = 'win-message' // Add class name to the element (for styling)
+  winMessage.textContent = 'Congratulations!' // Add text content to the element
 
-  if(word === currentWord) {
+  if(word === currentWord) { 
     setTimeout(() => {
-      document.body.appendChild(winMessage)
+      document.body.appendChild(winMessage) // Append the win message to the body
     }, 100);
   }
 }
@@ -62,41 +62,43 @@ const drawHangman = () => {
   const ctx = canvas.getContext('2d')
   ctx.lineWidth = 5
   ctx.beginPath()
+
+  // Draw the hangman based on the number of incorrect guesses
   switch (hangmanState) {
-    case 0:
+    case 0: // Head
       ctx.arc(260, 110, 20, 0, Math.PI * 2)
       break
-    case 1:
+    case 1: // Body
       ctx.moveTo(260, 130)
       ctx.lineTo(260, 200)
       break
-    case 2:
+    case 2: // Left arm
       ctx.moveTo(260, 150)
       ctx.lineTo(240, 170)
       break
-    case 3:
+    case 3: // Right arm
       ctx.moveTo(260, 150)
       ctx.lineTo(280, 170)
       break
-    case 4:
+    case 4: // Left leg
       ctx.moveTo(260, 200)
       ctx.lineTo(240, 240)
       break
-    case 5:
+    case 5: // Right leg
       ctx.moveTo(260, 200)
       ctx.lineTo(280, 240)
       break
   }
-  ctx.stroke()
+  ctx.stroke() 
   ctx.closePath()
-  hangmanState++
+  hangmanState++ // Increment the hangman state
 
-  if(hangmanState === 6) {
-    const lostMessage = document.createElement('h1')
-    lostMessage.className = 'lost-message'
-    lostMessage.textContent = 'Game Over! The word was: ' + currentWord
+  if(hangmanState === 6) { // If the whole hangman has been drawn, game over
+    const lostMessage = document.createElement('h1') // Create game lost message element
+    lostMessage.className = 'lost-message' // Add class name to the element (for styling)
+    lostMessage.textContent = 'Game Over! The word was: ' + currentWord // Add text content to the element
     setTimeout(() => {
-      document.body.appendChild(lostMessage)
+      document.body.appendChild(lostMessage) // Append the lost message to the body
     }, 100);
   }
 
@@ -105,12 +107,12 @@ const drawHangman = () => {
 
 // DRAW WORD SPACES
 const drawWordSpaces = (word) => {
-  const wordSpaces = document.getElementById("word-spaces");
+  const wordSpaces = document.getElementById("word-spaces"); 
 
-  wordSpaces.innerHTML = "";
+  wordSpaces.innerHTML = ""; 
 
   for (let i = 0; i < word.length; i++) {
-    const space = document.createElement("span");
+    const space = document.createElement("span"); 
     space.textContent = "_"; 
     space.style.margin = "0 10px"; 
     wordSpaces.appendChild(space);
